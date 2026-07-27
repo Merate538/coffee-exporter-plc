@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenHarvest Coffee Export PLC - Premium Ethiopian Coffee</title>
+    
+    <!-- Temporary Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+    
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configure Tailwind theme colors to match brand guidelines -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'gh-green': '#1b4332',
+                        'gh-green-light': '#2d6a4f',
+                        'gh-brown': '#3e2723',
+                        'gh-brown-light': '#5d4037',
+                        'gh-gold': '#d4af37',
+                        'gh-gold-light': '#f1c40f',
+                        'gh-cream': '#f8f5f0',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                        'serif': ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Load Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Load FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom CSS for specific styling and animations -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f5f0;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6, .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Preloader Styles */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #1b4332; /* Dark Green Brand Color */
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        .loader-icon {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(212, 175, 55, 0.2);
+            border-radius: 50%;
+            border-top-color: #d4af37; /* Gold Accent */
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .preloader-hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* Subtle parallax effect for hero background */
+        .hero-bg {
+            background-image: linear-gradient(rgba(27, 67, 50, 0.7), rgba(62, 39, 35, 0.8)), url('image_ca8b58.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* Image hover zoom effect */
+        .img-hover-zoom {
+            overflow: hidden;
+            border-radius: 0.5rem;
+        }
+        .img-hover-zoom img {
+            transition: transform 0.5s ease;
+        }
+        .img-hover-zoom:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Fade-in animation class */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            visibility: hidden;
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, visibility;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+            visibility: visible;
+        }
+
+        /* Floating Back to Top Button */
+        #backToTop {
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(20px);
+        }
+        #backToTop.show {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        /* Gold underline effect for headings */
+        .heading-underline {
+            position: relative;
+            display: inline-block;
+        }
+        .heading-underline::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 2px;
+            background-color: #d4af37;
+            bottom: -8px;
+            left: 25%;
+            transition: width 0.3s ease;
+        }
+        .group:hover .heading-underline::after {
+            width: 100%;
+            left: 0;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-gh-gold selection:text-white relative">
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader-icon"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent text-white py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="flex items-center gap-3 group">
+                        <!-- Custom SVG Logo -->
+                        <div class="w-12 h-12 flex items-center justify-center transform group-hover:scale-105 transition-transform duration-300">
+                            <svg width="100%" height="100%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Leaf background -->
+                                <path d="M50 5 C 90 5, 95 45, 95 65 C 95 90, 70 95, 50 95 C 30 95, 5 90, 5 65 C 5 45, 10 5, 50 5 Z" fill="#2d6a4f" opacity="0.9"/>
+                                <!-- Bean shape -->
+                                <path d="M30 35 C 50 15, 75 25, 80 45 C 85 65, 65 85, 45 80 C 25 75, 10 55, 30 35 Z" fill="#d4af37"/>
+                                <!-- Bean Crease -->
+                                <path d="M30 35 Q 55 60 80 45" stroke="#1b4332" stroke-width="5" fill="none" stroke-linecap="round"/>
+                                <!-- Initials -->
+                                <text x="50%" y="68%" font-family="Playfair Display, serif" font-size="26" font-weight="900" fill="#1b4332" text-anchor="middle" letter-spacing="1">GH</text>
+                            </svg>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="font-serif text-xl md:text-2xl font-bold tracking-wider text-gh-gold group-hover:text-gh-gold-light transition-colors">GreenHarvest</span>
+                            <span class="text-[10px] md:text-xs uppercase tracking-widest text-white opacity-80 font-medium">Coffee Export</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#" class="hover:text-gh-gold transition-colors text-sm uppercase tracking-wide font-medium">Home</a>
+                    <a href="#about" class="hover:text-gh-gold transition-colors text-sm uppercase tracking-wide font-medium">About Us</a>
+                    <a href="#products" class="hover:text-gh-gold transition-colors text-sm uppercase tracking-wide font-medium">Products</a>
+                    <a href="#sustainability" class="hover:text-gh-gold transition-colors text-sm uppercase tracking-wide font-medium">Sustainability</a>
+                    <a href="#gallery" class="hover:text-gh-gold transition-colors text-sm uppercase tracking-wide font-medium">Gallery</a>
+                    <a href="#contact" class="px-5 py-2.5 bg-gh-gold text-gh-brown font-semibold rounded hover:bg-gh-gold-light transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-sm uppercase tracking-wide">Contact Us</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-white hover:text-gh-gold focus:outline-none p-2">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gh-green absolute w-full shadow-xl">
+            <div class="px-4 pt-2 pb-6 space-y-2 text-center">
+                <a href="#" class="block px-3 py-3 text-base font-medium text-white hover:text-gh-gold hover:bg-gh-green-light rounded-md">Home</a>
+                <a href="#about" class="block px-3 py-3 text-base font-medium text-white hover:text-gh-gold hover:bg-gh-green-light rounded-md">About Us</a>
+                <a href="#products" class="block px-3 py-3 text-base font-medium text-white hover:text-gh-gold hover:bg-gh-green-light rounded-md">Products</a>
+                <a href="#sustainability" class="block px-3 py-3 text-base font-medium text-white hover:text-gh-gold hover:bg-gh-green-light rounded-md">Sustainability</a>
+                <a href="#gallery" class="block px-3 py-3 text-base font-medium text-white hover:text-gh-gold hover:bg-gh-green-light rounded-md">Gallery</a>
+                <a href="#contact" class="block px-3 py-3 text-base font-bold text-gh-brown bg-gh-gold rounded-md mx-4 mt-4">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center hero-bg">
+        <div class="absolute inset-0 bg-black opacity-30"></div>
+        <div class="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto mt-16">
+            <h4 class="text-gh-gold font-medium tracking-[0.2em] uppercase mb-4 text-sm sm:text-base animate-pulse">Established 2018 • Addis Ababa, Ethiopia</h4>
+            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif text-white mb-6 leading-tight drop-shadow-lg">
+                Premium Wholesale <br/>Ethiopian Coffee<br/>
+                <span class="text-gh-gold italic text-3xl sm:text-4xl md:text-5xl lg:text-6xl">Direct to Global Roasters</span>
+            </h1>
+            <p class="mt-4 text-lg sm:text-xl text-gray-200 mb-10 max-w-2xl mx-auto font-light leading-relaxed">Connecting international buyers with the authentic, rich flavors of Ethiopia's finest coffee beans. From our farms to your roastery.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#products" class="px-8 py-4 bg-gh-gold text-gh-brown font-semibold rounded hover:bg-gh-gold-light transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-sm uppercase tracking-wide">Explore Products</a>
+                <a href="#contact" class="px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded hover:bg-white hover:text-gh-green transition-all shadow-lg transform hover:-translate-y-1 text-sm uppercase tracking-wide">Request a Quote</a>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#about" class="text-white opacity-70 hover:opacity-100 transition-opacity">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 fade-in-section">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2">
+                    <div class="relative img-hover-zoom shadow-2xl rounded-lg">
+                        <img src="https://images.unsplash.com/photo-1511556820780-d912e42b4980?q=80&w=1000&auto=format&fit=crop" alt="Pouring Ethiopian Coffee" class="w-full h-[500px] object-cover rounded-lg">
+                        <div class="absolute -bottom-6 -right-6 bg-gh-green text-white p-6 rounded-lg shadow-xl hidden md:block border-l-4 border-gh-gold">
+                            <p class="font-serif text-3xl font-bold">24</p>
+                            <p class="text-sm uppercase tracking-wider opacity-80">Dedicated Employees</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 space-y-6">
+                    <div class="inline-block">
+                        <h2 class="text-3xl md:text-4xl font-serif text-gh-brown font-bold heading-underline pb-2">Rooted in Tradition, Exporting Excellence</h2>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed text-lg">
+                        GreenHarvest Coffee Export PLC, established in 2018 in Addis Ababa, is dedicated to sourcing and exporting the highest quality, ethically sourced Ethiopian green coffee beans. We bridge the gap between local farming excellence and international demand.
+                    </p>
+                    <p class="text-gray-600 leading-relaxed">
+                        Our trusted export network currently spans across discerning markets in Germany, the USA, Japan, and Canada, serving importers, wholesalers, cafés, and roasting companies seeking authentic Ethiopian profiles.
+                    </p>
+                    
+                    <!-- Mission, Vision, Core Values -->
+                    <div class="pt-6 space-y-6">
+                        <div class="bg-gh-cream p-5 rounded-lg border-l-4 border-gh-gold shadow-sm">
+                            <h4 class="font-serif font-bold text-xl text-gh-green mb-2 flex items-center"><i class="fas fa-bullseye text-gh-gold mr-3"></i>Our Mission</h4>
+                            <p class="text-sm text-gray-600 leading-relaxed">To supply the world's finest roasters with ethically sourced, premium Ethiopian coffee while empowering local farming communities through sustainable practices.</p>
+                        </div>
+                        <div class="bg-gh-cream p-5 rounded-lg border-l-4 border-gh-gold shadow-sm">
+                            <h4 class="font-serif font-bold text-xl text-gh-green mb-2 flex items-center"><i class="fas fa-eye text-gh-gold mr-3"></i>Our Vision</h4>
+                            <p class="text-sm text-gray-600 leading-relaxed">To be the most trusted and transparent exporter of specialty Ethiopian coffee globally, recognized for unparalleled quality and integrity.</p>
+                        </div>
+                        <div class="bg-white p-5 border border-gray-100 rounded-lg shadow-sm">
+                            <h4 class="font-serif font-bold text-xl text-gh-green mb-3">Core Values</h4>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="flex items-center text-sm font-medium text-gh-brown"><i class="fas fa-check-circle text-gh-gold mr-2"></i> Quality First</div>
+                                <div class="flex items-center text-sm font-medium text-gh-brown"><i class="fas fa-check-circle text-gh-gold mr-2"></i> Transparency</div>
+                                <div class="flex items-center text-sm font-medium text-gh-brown"><i class="fas fa-check-circle text-gh-gold mr-2"></i> Sustainability</div>
+                                <div class="flex items-center text-sm font-medium text-gh-brown"><i class="fas fa-check-circle text-gh-gold mr-2"></i> Community Focus</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="py-20 bg-gh-cream relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-section">
+                <span class="text-gh-gold font-medium tracking-widest uppercase text-sm">Our Advantage</span>
+                <h2 class="text-3xl md:text-4xl font-serif text-gh-green font-bold mt-2">Why Partner With Us</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 border-t-4 border-transparent hover:border-gh-gold group fade-in-section">
+                    <div class="w-16 h-16 bg-gh-cream rounded-full flex items-center justify-center mb-6 group-hover:bg-gh-gold transition-colors duration-300">
+                        <i class="fas fa-handshake text-2xl text-gh-green group-hover:text-white transition-colors duration-300"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-gh-brown mb-3">Trusted Partnerships</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">We build long-term, transparent relationships with international buyers, ensuring reliable communication and consistent supply chains.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 border-t-4 border-transparent hover:border-gh-gold group fade-in-section" style="transition-delay: 100ms;">
+                    <div class="w-16 h-16 bg-gh-cream rounded-full flex items-center justify-center mb-6 group-hover:bg-gh-gold transition-colors duration-300">
+                        <i class="fas fa-medal text-2xl text-gh-green group-hover:text-white transition-colors duration-300"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-gh-brown mb-3">Uncompromising Quality</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Rigorous quality control at every stage, from cherry selection to processing, guaranteeing premium cup profiles for your roastery.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 border-t-4 border-transparent hover:border-gh-gold group fade-in-section" style="transition-delay: 200ms;">
+                    <div class="w-16 h-16 bg-gh-cream rounded-full flex items-center justify-center mb-6 group-hover:bg-gh-gold transition-colors duration-300">
+                        <i class="fas fa-leaf text-2xl text-gh-green group-hover:text-white transition-colors duration-300"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-gh-brown mb-3">Sustainable Sourcing</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Deeply committed to eco-friendly farming and fair trade practices that empower our local farmers and protect the environment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section id="products" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-section">
+                <span class="text-gh-gold font-medium tracking-widest uppercase text-sm">Our Offerings</span>
+                <h2 class="text-3xl md:text-4xl font-serif text-gh-green font-bold mt-2">Premium Ethiopian Beans</h2>
+                <p class="mt-4 text-gray-500 max-w-2xl mx-auto">Discover the distinct and complex flavor profiles of our meticulously processed regional coffees.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <!-- Product 1: Yirgacheffe -->
+                <div class="flex flex-col bg-gh-cream rounded-xl overflow-hidden shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group fade-in-section">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1559525839-b184a4d698c7?q=80&w=800&auto=format&fit=crop" alt="Yirgacheffe Coffee Beans" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded text-xs font-bold text-gh-green uppercase tracking-wider">Washed & Natural</div>
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col">
+                        <h3 class="text-2xl font-serif font-bold text-gh-brown mb-2 group-hover:text-gh-green transition-colors">Yirgacheffe</h3>
+                        <p class="text-gray-600 mb-6 text-sm flex-grow">World-renowned for its exceptional, high-altitude Arabica beans. Delivers a captivating balance of delicate flavors, often described as bright, floral, and elegant.</p>
+                        <div class="space-y-2 text-sm border-t border-gray-200 pt-4">
+                            <div class="flex justify-between"><span class="font-medium text-gh-brown">Origin:</span> <span class="text-gray-600">SNNPR Region</span></div>
+                            <div class="flex justify-between"><span class="font-medium text-gh-brown">Altitude:</span> <span class="text-gray-600">1,900 - 2,200m</span></div>
+                            <div class="flex justify-between"><span class="font-medium text-gh-brown">Process:</span> <span class="text-gray-600">Washed & Natural</span></div>
+                            <div class="flex justify-between mt-2 pt-2 border-t border-gray-100"><span class="font-medium text-gh-brown">Flavor Notes:</span> <span class="text-gray-600 text-right">Tropical Fruit, Lemon, Floral, Milk Chocolate</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2: Sidamo -->
+                <div class="flex flex-col bg-gh-cream rounded-xl overflow-hidden shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group fade-in-section" style="transition-delay: 100ms;">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1587734195503-904fca47e0e9?q=80&w=800&auto=format&fit=crop" alt="Sidamo Coffee Beans" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded text-xs font-bold text-gh-green uppercase tracking-wider">Washed</div>
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col">
+                        <h3 class="text-2xl font-serif font-bold text-gh-brown mb-2 group-hover:text-gh-green transition-colors">Sidamo</h3>
+                        <p class="text-gray-600 mb-6 text-sm flex-grow">An elegant coffee known for its unique sweet lemon and floral flavors. It offers an ideal balance between bright, crisp acidity and a soft, smooth body.</p>
+                        <div class="space-y-2 text-sm border-t border-gray-200 pt-4">
+                            <div class="flex justify-between"><span class="font-medium text-gh-brown">Origin:</span> <span class="text-gray-600">Sidama Region</span></div>
+                            <div class="flex justify-between"><span class="font-medium text-gh-brown">Altitude:</span> <span class="text-gray-600">1,600 - 1,900m</span></div>
+                            <div class="flex justify-between"><span class="font-medium text-gh-brown">Process:</span> <span class="text-gray-600">Fully Washed</span></div>
+                            <div class="flex justify-between mt-2 pt-2 border-t border-gray-100"><span class="font-medium text-gh-brown">Flavor Notes:</span> <span class="text-gray-600 text-right">Tea-like, Lemon, Floral, Cocoa</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3: Guji -->
+                <div class="flex flex-col bg-gh-cream rounded-xl overflow-hidden shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group fade-in-section">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1611162458324-aae1eb4129a4?q=80&w=800&auto=format&fit=crop" alt="Guji Coffee Beans" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded text-xs font-bold text-gh-brown uppercase tracking-wider">Natural Process</div>
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col">
+                        <h3 class="text-2xl font-serif font-bold text-gh-brown mb-2 group-hover:text-gh-green transition-colors">Guji</h3>
+                        <p class="text-gray-600 mb-6 text-sm flex-grow">Celebrated for its bright fruit and incredible sweetness. The natural drying process develops a juicy, fruit-forward character with a remarkable balance of sweetness and lively acidity.</p>
+                        <div class="space-y-2 text-sm border-t border-gray-200 pt-4">
+                            <div class="flex justify-between"><span class="font-medium text-gh-brown">Origin:</span> <span class="text-gray-600">Oromia Region</span></div>
+                            <div class="flex justify-between"><span class="font-medium text-gh-brown">Altitude:</span> <span class="text-gray-600">1,800 - 2,200m</span></div>
+                            <div class="flex justify-between"><span class="font-medium text-gh-brown">Process:</span> <span class="text-gray-600">Natural Sun-Dried</span></div>
+                            <div class="flex justify-between mt-2 pt-2 border-t border-gray-100"><span class="font-medium text-gh-brown">Flavor Notes:</span> <span class="text-gray-600 text-right">Blackberry, Chocolate, Floral, Berries</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4: Harrar -->
+                <div class="flex flex-col bg-gh-cream rounded-xl overflow-hidden shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group fade-in-section" style="transition-delay: 100ms;">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=800&auto=format&fit=crop" alt="Harrar Coffee Beans" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded text-xs font-bold text-gh-brown uppercase tracking-wider">Natural Process</div>
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col">
+                        <h3 class="text-2xl font-serif font-bold text-gh-brown mb-2 group-hover:text-gh-green transition-colors">Harrar</h3>
+                        <p class="text-gray-600 mb-6 text-sm flex-grow">A dry processed, exotic bean known for its bold character and deep, expressive profile. It features a heavy body and a winey, fruity acidity that resonates in the cup.</p>
+                        <div class="space-y-2 text-sm border-t border-gray-200 pt-4">
+                            <div class="flex justify-between"><span class="font-medium text-gh-brown">Origin:</span> <span class="text-gray-600">Oromia Region (East)</span></div>
+                            <div class="flex justify-between"><span class="font-medium text-gh-brown">Altitude:</span> <span class="text-gray-600">1,400 - 2,100m</span></div>
+                            <div class="flex justify-between"><span class="font-medium text-gh-brown">Process:</span> <span class="text-gray-600">Natural Sun-Dried</span></div>
+                            <div class="flex justify-between mt-2 pt-2 border-t border-gray-100"><span class="font-medium text-gh-brown">Flavor Notes:</span> <span class="text-gray-600 text-right">Blueberry, Apricot, Wine-like, Earthy</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12 fade-in-section">
+                <a href="#" class="inline-flex items-center text-gh-green font-semibold hover:text-gh-gold transition-colors">
+                    View Full Product Catalog <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sustainability Section -->
+    <section id="sustainability" class="py-20 bg-gh-green text-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-section">
+                <span class="text-gh-gold font-medium tracking-widest uppercase text-sm">Our Commitment</span>
+                <h2 class="text-3xl md:text-4xl font-serif font-bold mt-2">Sustainable & Ethical Sourcing</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Local Farmers -->
+                <div class="bg-gh-green-light p-8 rounded-lg text-center shadow-lg border border-white/5 fade-in-section hover:-translate-y-2 transition-transform duration-300">
+                    <i class="fas fa-users text-4xl text-gh-gold mb-6"></i>
+                    <h3 class="font-serif font-bold text-xl mb-3">Supporting Local Farmers</h3>
+                    <p class="text-sm text-gray-200 leading-relaxed">We partner directly with smallholder farmers, providing fair compensation and agricultural training to uplift local communities.</p>
+                </div>
+                <!-- Eco-Friendly -->
+                <div class="bg-gh-green-light p-8 rounded-lg text-center shadow-lg border border-white/5 fade-in-section hover:-translate-y-2 transition-transform duration-300" style="transition-delay: 100ms;">
+                    <i class="fas fa-leaf text-4xl text-gh-gold mb-6"></i>
+                    <h3 class="font-serif font-bold text-xl mb-3">Eco-Friendly Farming</h3>
+                    <p class="text-sm text-gray-200 leading-relaxed">Our network utilizes shade-grown and organic farming methods, preserving Ethiopia's rich biodiversity and soil health.</p>
+                </div>
+                <!-- Fair Trade -->
+                <div class="bg-gh-green-light p-8 rounded-lg text-center shadow-lg border border-white/5 fade-in-section hover:-translate-y-2 transition-transform duration-300" style="transition-delay: 200ms;">
+                    <i class="fas fa-balance-scale text-4xl text-gh-gold mb-6"></i>
+                    <h3 class="font-serif font-bold text-xl mb-3">Fair Trade Practices</h3>
+                    <p class="text-sm text-gray-200 leading-relaxed">Committed to transparency and ethical trade, ensuring equitable profit distribution across the entire supply chain.</p>
+                </div>
+                <!-- Quality Control -->
+                <div class="bg-gh-green-light p-8 rounded-lg text-center shadow-lg border border-white/5 fade-in-section hover:-translate-y-2 transition-transform duration-300" style="transition-delay: 300ms;">
+                    <i class="fas fa-check-double text-4xl text-gh-gold mb-6"></i>
+                    <h3 class="font-serif font-bold text-xl mb-3">Strict Quality Control</h3>
+                    <p class="text-sm text-gray-200 leading-relaxed">From cherry sorting to final export processing, every batch undergoes rigorous cupping and grading protocols.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 bg-gh-cream">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 fade-in-section">
+                <span class="text-gh-gold font-medium tracking-widest uppercase text-sm">Behind the Scenes</span>
+                <h2 class="text-3xl md:text-4xl font-serif text-gh-green font-bold mt-2">Our Process in Pictures</h2>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <!-- New Images Added -->
+                <div class="overflow-hidden rounded-lg fade-in-section group h-48 md:h-64 shadow-md">
+                    <img src="image_bfa23a.jpg" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" alt="Coffee Cherries">
+                </div>
+                <div class="overflow-hidden rounded-lg fade-in-section group h-48 md:h-64 shadow-md">
+                    <img src="image_bfa215.jpg" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" alt="Coffee Beans in Sack">
+                </div>
+                <div class="overflow-hidden rounded-lg fade-in-section group h-48 md:h-64 shadow-md">
+                    <img src="image_bfa1db.jpg" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" alt="Roasting Coffee">
+                </div>
+                <div class="overflow-hidden rounded-lg fade-in-section group h-48 md:h-64 shadow-md">
+                    <img src="image_bf9ef4.jpg" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" alt="Steaming Coffee Beans">
+                </div>
+                <!-- Existing Gallery Images -->
+                <div class="overflow-hidden rounded-lg fade-in-section group h-48 md:h-64 shadow-md">
+                    <img src="https://images.unsplash.com/photo-1587570494441-1f65d6015a99?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" alt="Warehouse Sacks">
+                </div>
+                <div class="overflow-hidden rounded-lg fade-in-section group h-48 md:h-64 shadow-md">
+                    <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" alt="Coffee Cupping">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-20 bg-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 fade-in-section">
+                <i class="fas fa-quote-left text-4xl text-gh-gold opacity-50 mb-4"></i>
+                <h2 class="text-3xl md:text-4xl font-serif text-gh-green font-bold">Trusted by Roasters Worldwide</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-gh-cream p-8 rounded-lg shadow-lg border-t-4 border-gh-gold fade-in-section">
+                    <p class="text-gray-600 italic mb-6 leading-relaxed">"GreenHarvest has been our exclusive supplier for Yirgacheffe beans in Germany for three years. Their consistency in quality and moisture content is unmatched. The communication is always professional and transparent."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gray-300 rounded-full overflow-hidden mr-4 border-2 border-gh-gold">
+                            <img src="https://i.pravatar.cc/150?img=11" alt="Client" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold font-serif text-gh-brown">Klaus Weber</h4>
+                            <p class="text-xs text-gray-500 uppercase tracking-wider">Head Roaster, Berlin, Germany</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-gh-cream p-8 rounded-lg shadow-lg border-t-4 border-gh-gold fade-in-section" style="transition-delay: 100ms;">
+                    <p class="text-gray-600 italic mb-6 leading-relaxed">"The Guji natural we received from GreenHarvest this season scored incredibly high in our cupping tests. Their commitment to sustainable sourcing aligns perfectly with our brand values here in the US."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gray-300 rounded-full overflow-hidden mr-4 border-2 border-gh-gold">
+                            <img src="https://i.pravatar.cc/150?img=47" alt="Client" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold font-serif text-gh-brown">Sarah Jenkins</h4>
+                            <p class="text-xs text-gray-500 uppercase tracking-wider">Green Buyer, Portland, USA</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-gh-cream relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-section">
+                <span class="text-gh-gold font-medium tracking-widest uppercase text-sm">Get in Touch</span>
+                <h2 class="text-3xl md:text-5xl font-serif text-gh-brown font-bold mt-2 mb-4">Partner With Us</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Partner with us for consistent, premium green coffee. Contact our export team today for a custom quote, current availability, and complimentary green bean samples.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div class="bg-white p-8 rounded-xl shadow-xl border-t-4 border-gh-gold fade-in-section">
+                    <form action="#" method="POST" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gh-brown mb-1">Full Name</label>
+                                <input type="text" id="name" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded focus:ring-2 focus:ring-gh-gold focus:border-transparent outline-none transition-all" required>
+                            </div>
+                            <div>
+                                <label for="company" class="block text-sm font-medium text-gh-brown mb-1">Company Name</label>
+                                <input type="text" id="company" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded focus:ring-2 focus:ring-gh-gold focus:border-transparent outline-none transition-all" required>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gh-brown mb-1">Email Address</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded focus:ring-2 focus:ring-gh-gold focus:border-transparent outline-none transition-all" required>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gh-brown mb-1">Message / Requirements</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded focus:ring-2 focus:ring-gh-gold focus:border-transparent outline-none transition-all" required></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-4 bg-gh-brown text-white font-bold rounded hover:bg-gh-green transition-colors shadow-lg uppercase tracking-wider text-sm">Send Inquiry</button>
+                    </form>
+                </div>
+
+                <!-- Contact Details & Map -->
+                <div class="space-y-8 fade-in-section" style="transition-delay: 100ms;">
+                    <!-- Map Placeholder -->
+                    <div class="w-full h-56 bg-gray-200 rounded-xl overflow-hidden relative shadow-md">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d252230.0202897456!2d38.61332804027581!3d8.963479542403238!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b85cef5ab402d%3A0x8467b6b037a24e49!2sAddis%20Ababa%2C%20Ethiopia!5e0!3m2!1sen!2sus!4v1715000000000!5m2!1sen!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-white shadow-sm text-gh-green rounded-full flex items-center justify-center flex-shrink-0 mr-4 border border-gray-100">
+                                <i class="fas fa-map-marker-alt text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gh-brown text-sm uppercase tracking-wide">Headquarters</h4>
+                                <p class="text-sm text-gray-600 mt-1">Export Processing Zone<br>Addis Ababa, Ethiopia</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-white shadow-sm text-gh-green rounded-full flex items-center justify-center flex-shrink-0 mr-4 border border-gray-100">
+                                <i class="fas fa-clock text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gh-brown text-sm uppercase tracking-wide">Office Hours</h4>
+                                <p class="text-sm text-gray-600 mt-1">Mon - Fri: 8:00 AM - 5:00 PM<br>(East Africa Time)</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-white shadow-sm text-gh-green rounded-full flex items-center justify-center flex-shrink-0 mr-4 border border-gray-100">
+                                <i class="fas fa-envelope text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gh-brown text-sm uppercase tracking-wide">Email Us</h4>
+                                <a href="mailto:export@greenharvestcoffee.com" class="text-sm text-gray-600 hover:text-gh-gold mt-1 block transition-colors">export@greenharvestcoffee.com</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-white shadow-sm text-gh-green rounded-full flex items-center justify-center flex-shrink-0 mr-4 border border-gray-100">
+                                <i class="fas fa-phone-alt text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gh-brown text-sm uppercase tracking-wide">Call Us</h4>
+                                <p class="text-sm text-gray-600 mt-1">+251 911 234 567</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-4">
+                        <a href="https://wa.me/251911234567" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-8 py-4 bg-[#25D366] text-white rounded hover:bg-[#128C7E] transition-all shadow-lg hover:shadow-xl font-medium w-full justify-center md:w-auto transform hover:-translate-y-1">
+                            <i class="fab fa-whatsapp text-2xl mr-3"></i> Chat on WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gh-brown text-gray-300 pt-16 pb-8 border-t-4 border-gh-gold">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                <!-- Brand Info -->
+                <div>
+                    <div class="flex items-center gap-3 mb-6">
+                        <svg width="40" height="40" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M50 5 C 90 5, 95 45, 95 65 C 95 90, 70 95, 50 95 C 30 95, 5 90, 5 65 C 5 45, 10 5, 50 5 Z" fill="#d4af37" opacity="0.9"/>
+                            <text x="50%" y="68%" font-family="Playfair Display, serif" font-size="28" font-weight="900" fill="#1b4332" text-anchor="middle" letter-spacing="1">GH</text>
+                        </svg>
+                        <h3 class="font-serif text-2xl font-bold text-white">GreenHarvest</h3>
+                    </div>
+                    <p class="text-sm leading-relaxed mb-6">Premium Ethiopian coffee exported worldwide. Building trust through quality, consistency, and sustainable practices.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-gh-gold hover:text-white transition-all hover:-translate-y-1"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-gh-gold hover:text-white transition-all hover:-translate-y-1"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-gh-gold hover:text-white transition-all hover:-translate-y-1"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-bold text-white uppercase tracking-wider text-sm mb-6 flex items-center"><span class="w-4 h-0.5 bg-gh-gold mr-3"></span> Quick Links</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#" class="hover:text-gh-gold transition-colors flex items-center"><i class="fas fa-chevron-right text-[10px] mr-2 text-gh-gold"></i> Home</a></li>
+                        <li><a href="#about" class="hover:text-gh-gold transition-colors flex items-center"><i class="fas fa-chevron-right text-[10px] mr-2 text-gh-gold"></i> About Us</a></li>
+                        <li><a href="#products" class="hover:text-gh-gold transition-colors flex items-center"><i class="fas fa-chevron-right text-[10px] mr-2 text-gh-gold"></i> Coffee Products</a></li>
+                        <li><a href="#sustainability" class="hover:text-gh-gold transition-colors flex items-center"><i class="fas fa-chevron-right text-[10px] mr-2 text-gh-gold"></i> Sustainability</a></li>
+                        <li><a href="#gallery" class="hover:text-gh-gold transition-colors flex items-center"><i class="fas fa-chevron-right text-[10px] mr-2 text-gh-gold"></i> Gallery</a></li>
+                    </ul>
+                </div>
+
+                <!-- Products -->
+                <div>
+                    <h4 class="font-bold text-white uppercase tracking-wider text-sm mb-6 flex items-center"><span class="w-4 h-0.5 bg-gh-gold mr-3"></span> Our Coffees</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#products" class="hover:text-gh-gold transition-colors flex items-center"><i class="fas fa-chevron-right text-[10px] mr-2 text-gh-gold"></i> Yirgacheffe</a></li>
+                        <li><a href="#products" class="hover:text-gh-gold transition-colors flex items-center"><i class="fas fa-chevron-right text-[10px] mr-2 text-gh-gold"></i> Sidamo</a></li>
+                        <li><a href="#products" class="hover:text-gh-gold transition-colors flex items-center"><i class="fas fa-chevron-right text-[10px] mr-2 text-gh-gold"></i> Guji</a></li>
+                        <li><a href="#products" class="hover:text-gh-gold transition-colors flex items-center"><i class="fas fa-chevron-right text-[10px] mr-2 text-gh-gold"></i> Harrar</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-400">
+                <p>&copy; 2026 GreenHarvest Coffee Export PLC. All rights reserved.</p>
+                <div class="mt-4 md:mt-0 space-x-6">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-8 right-8 w-12 h-12 bg-gh-gold text-gh-brown rounded-full shadow-lg flex items-center justify-center hover:bg-gh-gold-light focus:outline-none z-50">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript for interactivity -->
+    <script>
+        // Preloader Logic
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            preloader.classList.add('preloader-hidden');
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 500); // Wait for CSS transition to complete
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Menu Toggle
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            const icon = btn.querySelector('i');
+
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+                if (menu.classList.contains('hidden')) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                } else {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                }
+            });
+
+            // Close mobile menu on link click
+            const mobileLinks = menu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    menu.classList.add('hidden');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                });
+            });
+
+            // Sticky Navbar Effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('bg-gh-green', 'shadow-md');
+                    navbar.classList.remove('bg-transparent');
+                } else {
+                    navbar.classList.add('bg-transparent');
+                    navbar.classList.remove('bg-gh-green', 'shadow-md');
+                }
+            });
+
+            // Back to Top Button visibility
+            const backToTopBtn = document.getElementById('backToTop');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                }
+            });
+
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Intersection Observer for scroll animations (fade-in)
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Stop observing once visible
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all elements with .fade-in-section
+            document.querySelectorAll('.fade-in-section').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
